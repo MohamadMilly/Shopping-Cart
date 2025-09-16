@@ -1,0 +1,31 @@
+.navigationBar {
+  composes: navBackground from "./colors.module.css";
+  padding: 10px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.active {
+  background-color: gray;
+}
+
+.navigationItems {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  gap: 25px;
+  align-items: center;
+}
+
+.navigationItem {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.navlink {
+  composes: textColor from "./colors.module.css";
+  display: block;
+  padding: 5px;
+  font-size: 20px;
+}
