@@ -1,10 +1,11 @@
 import { NavLink } from "react-router";
 import styles from "../styles/navbar.module.css";
+import { House, Store, ShoppingCart } from "lucide-react";
 
 export function Navbar() {
   return (
     <nav className={styles.navigationBar}>
-      <h1>ShowShop</h1>
+      <h1 className={styles.title}>ShowShop</h1>
       <ul className={styles.navigationItems}>
         <li className={styles.navigationItem}>
           <NavLink
@@ -13,6 +14,7 @@ export function Navbar() {
               isActive ? styles.active : styles.navlink
             }
           >
+            <House />
             Home
           </NavLink>
         </li>
@@ -23,6 +25,7 @@ export function Navbar() {
               isActive ? styles.active : styles.navlink
             }
           >
+            <Store />
             Shop
           </NavLink>
         </li>
@@ -33,6 +36,7 @@ export function Navbar() {
               isActive ? styles.active : styles.navlink
             }
           >
+            <ShoppingCart />
             Cart
           </NavLink>
         </li>

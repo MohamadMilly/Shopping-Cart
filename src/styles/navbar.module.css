@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
 .navigationBar {
   composes: navBackground from "./colors.module.css";
   padding: 10px 25px;
@@ -6,8 +8,8 @@
   align-items: center;
 }
 
-.active {
-  background-color: gray;
+.title {
+  font-family: "Edu NSW ACT Cursive", cursive;
 }
 
 .navigationItems {
@@ -20,12 +22,20 @@
 
 .navigationItem {
   list-style-type: none;
-  font-size: 20px;
 }
 
 .navlink {
   composes: textColor from "./colors.module.css";
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   padding: 5px;
   font-size: 20px;
+  border-radius: 5px;
+}
+
+.active {
+  composes: navlink;
+  composes: activeBackgroundNavItem from "./colors.module.css";
 }

@@ -2,5 +2,8 @@
   color: #0a0a0a;
 }
 .navBackground {
-  background-color: #fde68a;
+  background-color: #e2e8f0;
+}
+.activeBackgroundNavItem {
+  background-color: #f1f5f9;
 }
