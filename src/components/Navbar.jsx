@@ -1,11 +1,12 @@
 import { NavLink, useLoaderData } from "react-router";
 import styles from "../styles/navbar.module.css";
 import { House, Store, ShoppingCart, Menu, X } from "lucide-react";
-import { purchasedData } from "../data";
+import { getPurchasedData } from "../data";
 import { useState } from "react";
 
 export function loader() {
-  const purchasedCount = purchasedData.length;
+  const purchasedProducts = getPurchasedData();
+  const purchasedCount = purchasedProducts.length;
   return { purchasedCount };
 }
 export function Navbar() {
@@ -40,9 +41,7 @@ export function Navbar() {
           </li>
           <li className={styles.navigationItem}>
             {purchasedCount > 0 && (
-              <span className={styles.cartNotification}>
-                {purchasedData.length}
-              </span>
+              <span className={styles.cartNotification}>{purchasedCount}</span>
             )}
             <NavLink
               to={"/cart"}
@@ -95,7 +94,7 @@ export function Navbar() {
               <li className={styles.mobileNavigationItem}>
                 {purchasedCount > 0 && (
                   <span className={styles.mobileCartNotification}>
-                    {purchasedData.length}
+                    {purchasedCount}
                   </span>
                 )}
                 <NavLink

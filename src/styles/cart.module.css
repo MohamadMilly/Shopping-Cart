@@ -48,6 +48,37 @@
   margin-top: 20px;
 }
 
+.amountControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.amountInput {
+  composes: amountFormBackgroundColor from "./colors.module.css";
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 6px 10px;
+  width: 70px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.increaseButton {
+  composes: increasingButtonBackground from "./colors.module.css";
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.decreaseButton {
+  composes: decreasingButtonBackground from "./colors.module.css";
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
 .emptyCardHintContainer {
   width: 100%;
   height: 100%;

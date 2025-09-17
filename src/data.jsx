@@ -44,6 +44,20 @@ export function unpurchaseData(id) {
   }
 }
 
+// Update the amount of a purchased product
+export function updatePurchasedAmount(id, amount) {
+  const products = getPurchasedData();
+  const index = products.findIndex((p) => p.id === id);
+
+  if (index !== -1) {
+    products[index] = {
+      ...products[index],
+      amount: Number(amount),
+    };
+    set(products);
+  }
+}
+
 // Search products by query
 export function searchForProducts(query, products) {
   if (!query) return products;
@@ -60,5 +74,4 @@ function set(products) {
   localStorage.setItem("products", JSON.stringify(products));
 }
 
-// Export purchasedData as a getter-like function
-export const purchasedData = () => getPurchasedData();
+console.log(getPurchasedData());

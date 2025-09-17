@@ -1,22 +1,44 @@
+import { useLoaderData, Form } from "react-router";
 import {
-  useLoaderData,
-  redirect,
-  Form,
-  useParams,
-  useNavigate,
-} from "react-router";
-import { purchasedData, unpurchaseData } from "../data";
+  getPurchasedData,
+  unpurchaseData,
+  updatePurchasedAmount,
+} from "../data";
 import styles from "../styles/cart.module.css";
 import { ShoppingBasket } from "lucide-react";
-
+import { PurchasedProduct } from "../components/purchasedItem";
+import { redirect } from "react-router";
 export function loader() {
-  const purchasedProducts = purchasedData();
+  const purchasedProducts = getPurchasedData();
   return { purchasedProducts };
 }
+
 export async function action({ request }) {
   const formData = await request.formData();
+  const actionType = formData.get("actionType");
   const id = formData.get("id");
+  if (actionType === "edit") {
+    const amount = formData.get("amount");
+    updatePurchasedAmount(id, amount);
+    return redirect("/cart");
+  }
+
+  if (actionType === "increment") {
+    const products = getPurchasedData();
+    const item = products.find((p) => String(p.id) === String(id));
+    if (item) updatePurchasedAmount(id, Number(item.amount) + 1);
+    return redirect("/cart");
+  }
+
+  if (actionType === "decrement") {
+    const products = getPurchasedData();
+    const item = products.find((p) => String(p.id) === String(id));
+    if (item) updatePurchasedAmount(id, Math.max(1, Number(item.amount) - 1));
+    return redirect("/cart");
+  }
+
   unpurchaseData(id);
+  return redirect("/cart");
 }
 
 export default function CartPage() {
@@ -30,36 +52,7 @@ export default function CartPage() {
       <section className={styles.cartItemsContainer}>
         {purchasedProducts.length > 0 ? (
           purchasedProducts.map((product) => {
-            return (
-              <div key={product.id} className={styles.cartItem}>
-                <div className={styles.cartItemImageContainer}>
-                  <img
-                    src={product.image}
-                    alt={product.description}
-                    className={styles.cartItemImage}
-                  />
-                </div>
-                <div className={styles.cartItemInfo}>
-                  <p>
-                    <b>{product.title}</b>
-                  </p>
-                  <p>Amount: {product.amount}</p>
-                  <p>Description: {product.description}</p>
-                  <p>Price : {product.price * product.amount}</p>
-                  <Form method="post">
-                    <input type="hidden" value={product.id} name="id" />
-                    <button
-                      type="submit
-                      
-                "
-                      className={styles.unpurchaseButton}
-                    >
-                      Unpurchase
-                    </button>
-                  </Form>
-                </div>
-              </div>
-            );
+            return <PurchasedProduct product={product} styles={styles} />;
           })
         ) : (
           <div className={styles.emptyCardHintContainer}>
