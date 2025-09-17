@@ -7,9 +7,11 @@ import {
 } from "react-router";
 import { purchasedData, unpurchaseData } from "../data";
 import styles from "../styles/cart.module.css";
+import { ShoppingBasket } from "lucide-react";
 
 export function loader() {
-  return { purchasedData };
+  const purchasedProducts = purchasedData();
+  return { purchasedProducts };
 }
 export async function action({ request }) {
   const formData = await request.formData();
@@ -18,16 +20,16 @@ export async function action({ request }) {
 }
 
 export default function CartPage() {
-  const { purchasedData } = useLoaderData();
-  const totalPrice = purchasedData.reduce(
+  const { purchasedProducts } = useLoaderData();
+  const totalPrice = purchasedProducts.reduce(
     (acc, cur) => acc + cur.price * cur.amount,
     0
   );
   return (
     <main className={styles.cartContainer}>
       <section className={styles.cartItemsContainer}>
-        {purchasedData.length > 0 ? (
-          purchasedData.map((product) => {
+        {purchasedProducts.length > 0 ? (
+          purchasedProducts.map((product) => {
             return (
               <div key={product.id} className={styles.cartItem}>
                 <div className={styles.cartItemImageContainer}>
@@ -60,9 +62,14 @@ export default function CartPage() {
             );
           })
         ) : (
-          <p>Nothing in the cart</p>
+          <div className={styles.emptyCardHintContainer}>
+            <ShoppingBasket size={64} strokeWidth={1} />
+            <h1 className={styles.NothingInTheCartHeading}>
+              Nothing In The Cart !
+            </h1>
+          </div>
         )}
-        <h1>Total: {totalPrice}</h1>
+        {purchasedProducts.length > 0 && <h1>Total: {totalPrice}</h1>}
       </section>
     </main>
   );
