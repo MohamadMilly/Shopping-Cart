@@ -48,7 +48,7 @@ export function PurchasePage() {
           <b>{product.title}</b>
         </p>
         <p>{product.description}</p>
-        <p>Price: {product.price * amount}</p>
+        <p>Price: {(product.price * amount).toFixed(2)}</p>
         <Form method="post" className={styles.amountForm}>
           <input type="hidden" value={product.title} name="title" />
           <input type="hidden" value={product.description} name="description" />
@@ -60,6 +60,7 @@ export function PurchasePage() {
             type="number"
             name="amount"
             id="amount"
+            min={1}
             readOnly
             value={amount}
           />
