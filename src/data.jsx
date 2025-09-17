@@ -23,3 +23,14 @@ export function unpurchaseData(id) {
   const index = purchasedData.findIndex((purchased) => purchased.id === id);
   purchasedData.splice(index, 1);
 }
+
+export function searchForProducts(query, products) {
+  if (!query) return products;
+
+  const result = products.filter((product) =>
+    product.title
+      .split(" ")
+      .some((word) => word.toLowerCase().startsWith(query.toLowerCase()))
+  );
+  return result;
+}

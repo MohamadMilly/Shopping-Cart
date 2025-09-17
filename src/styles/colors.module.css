@@ -37,3 +37,12 @@
 .cartItemInfoBackground {
   background-color: #fefce8;
 }
+
+.shopHeaderBackground {
+  background-color: #94a3b8;
+}
+
+.showDetailsColorAndBackground {
+  background-color: #fde68a;
+  color: #b45309;
+}

@@ -23,3 +23,11 @@
 .productInfo {
   padding: 10px;
 }
+
+.showDetailsLink {
+  composes: showDetailsColorAndBackground from "./colors.module.css";
+  display: block;
+  padding: 5px 20px;
+  text-decoration: none;
+  border-radius: 10px;
+}

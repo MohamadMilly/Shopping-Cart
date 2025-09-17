@@ -11,7 +11,9 @@ export default function Product({ productData }) {
         <p>Price: {price}</p>
       </div>
 
-      <Link to={`/product/${id}`}>Show Details</Link>
+      <Link to={`/product/${id}`} className={styles.showDetailsLink}>
+        Show Details
+      </Link>
     </div>
   );
 }
