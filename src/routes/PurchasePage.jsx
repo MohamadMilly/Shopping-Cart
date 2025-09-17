@@ -21,8 +21,11 @@ export async function action({ params, request }) {
 export function PurchasePage() {
   const { id } = useParams();
   const [amount, setAmount] = useState(1);
-  const { data: products } = useProducts();
+  const { data: products, isPending } = useProducts();
   const navigate = useNavigate();
+
+  if (isPending) return <p>Loading...</p>;
+
   const product = products.find((product) => product.id == id);
 
   const handleAmountIncrease = () => {
@@ -42,7 +45,7 @@ export function PurchasePage() {
       </div>
       <div className={styles.purchasedProductInfo}>
         <p>
-          <b>Price:{product.title}</b>
+          <b>{product.title}</b>
         </p>
         <p>{product.description}</p>
         <p>Price: {product.price * amount}</p>
