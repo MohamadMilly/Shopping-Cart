@@ -85,5 +85,11 @@ body {
   font-family: sans-serif;
 }
 #root {
+  composes: textColor from "./styles/colors.module.css";
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+main:first-of-type {
+  flex-grow: 1;
 }

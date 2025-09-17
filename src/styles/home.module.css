@@ -1,0 +1,54 @@
+.home {
+  min-height: 100%;
+  background-image: url("../assets/home.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  position: relative;
+}
+.homeTitle {
+  font-size: 4rem;
+}
+
+.overlay {
+  padding: 50px 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.434);
+}
+
+.homeButton {
+  composes: homeTitleColor from "./colors.module.css";
+  composes: homeButtonBackground from "./colors.module.css";
+  margin-top: 30px;
+  padding: 5px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.appHint {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 1000px) {
+  .homeTitle {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 480px) {
+  .homeTitle {
+    font-size: 2.5rem;
+  }
+  .appHint {
+    font-size: 1rem;
+  }
+}

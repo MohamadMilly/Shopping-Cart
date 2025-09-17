@@ -22,6 +22,7 @@
 
 .navigationItem {
   list-style-type: none;
+  position: relative;
 }
 
 .navlink {
@@ -33,9 +34,62 @@
   padding: 5px;
   font-size: 20px;
   border-radius: 5px;
+  position: relative;
 }
 
 .active {
   composes: navlink;
   composes: activeBackgroundNavItem from "./colors.module.css";
+  composes: homeTitleColor from "./colors.module.css";
+}
+
+.cartNotification,
+.mobileCartNotification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-40%);
+  background-color: #ef4444;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  z-index: 1;
+}
+.mobileNavbar {
+  display: none;
+}
+.toggleButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.mobileNavigationItem {
+  list-style-type: none;
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+.mobileNavigationItems {
+  margin-top: 15px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.menuNavButton {
+  background: none;
+  border: none;
+}
+@media (max-width: 700px) {
+  .mobileNavbar {
+    display: flex;
+    flex-direction: column;
+    composes: navBackground from "./colors.module.css";
+    padding: 10px 25px;
+  }
+  .navigationBar {
+    display: none;
+  }
 }

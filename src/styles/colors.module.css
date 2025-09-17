@@ -2,8 +2,38 @@
   color: #0a0a0a;
 }
 .navBackground {
-  background-color: #e2e8f0;
+  background-color: #e2e8f077;
+  backdrop-filter: blue(5px);
 }
 .activeBackgroundNavItem {
-  background-color: #f1f5f9;
+  background-color: #1f7bd7ba;
+}
+.homeTitleColor {
+  color: white;
+}
+.homeButtonBackground {
+  background-color: #3b82f6;
+}
+.amountFormBackgroundColor {
+  background-color: #f8fafc;
+}
+
+.purchasedProductContainerBackgroundColor {
+  background-color: #f3f4f6;
+}
+
+.increasingButtonBackground {
+  background-color: #22c55e;
+}
+.decreasingButtonBackground {
+  background-color: #ef4444;
+}
+.unpurchaseButtonbackground {
+  background-color: #ef4444;
+}
+.cartItemBackground {
+  background-color: rgba(254, 240, 138, 0.758);
+}
+.cartItemInfoBackground {
+  background-color: #fefce8;
 }

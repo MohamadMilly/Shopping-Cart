@@ -1,0 +1,25 @@
+.productImg {
+  height: 250px;
+  width: 250px;
+  object-fit: contain;
+  margin-top: 10px;
+}
+.productContainer {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.432);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productTitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productInfo {
+  padding: 10px;
+}
