@@ -32,6 +32,7 @@ export function PurchasePage() {
     setAmount(amount + 1);
   };
   const handleAmountdecrease = () => {
+    if (amount <= 1) return;
     setAmount(amount - 1);
   };
   return (
@@ -60,7 +61,6 @@ export function PurchasePage() {
             type="number"
             name="amount"
             id="amount"
-            min={1}
             readOnly
             value={amount}
           />
