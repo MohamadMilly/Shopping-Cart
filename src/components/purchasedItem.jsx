@@ -40,7 +40,7 @@ export function PurchasedProduct({ product, styles }) {
           </div>
         </div>
         <p>Description: {product.description}</p>
-        <p>Price : {product.price * product.amount}</p>
+        <p>Price : {(product.price * product.amount).toFixed(2)}</p>
         <Form method="post">
           <input type="hidden" value={product.id} name="id" />
 

@@ -17,11 +17,6 @@ export async function action({ request }) {
   const formData = await request.formData();
   const actionType = formData.get("actionType");
   const id = formData.get("id");
-  if (actionType === "edit") {
-    const amount = formData.get("amount");
-    updatePurchasedAmount(id, amount);
-    return redirect("/cart");
-  }
 
   if (actionType === "increment") {
     const products = getPurchasedData();
@@ -43,10 +38,9 @@ export async function action({ request }) {
 
 export default function CartPage() {
   const { purchasedProducts } = useLoaderData();
-  const totalPrice = purchasedProducts.reduce(
-    (acc, cur) => acc + cur.price * cur.amount,
-    0
-  );
+  const totalPrice = purchasedProducts
+    .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
+    .toFixed(2);
   return (
     <main className={styles.cartContainer}>
       <section className={styles.cartItemsContainer}>
@@ -62,7 +56,9 @@ export default function CartPage() {
             </h1>
           </div>
         )}
-        {purchasedProducts.length > 0 && <h1>Total: {totalPrice}</h1>}
+        {purchasedProducts.length > 0 && (
+          <h1 className={styles.totalHeading}>Total: {totalPrice}</h1>
+        )}
       </section>
     </main>
   );
