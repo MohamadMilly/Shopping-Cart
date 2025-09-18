@@ -1,4 +1,3 @@
-import { useLoaderData, Form } from "react-router";
 import {
   getPurchasedData,
   unpurchaseData,
@@ -8,10 +7,7 @@ import styles from "../styles/cart.module.css";
 import { ShoppingBasket } from "lucide-react";
 import { PurchasedProduct } from "../components/purchasedItem";
 import { redirect } from "react-router";
-export function loader() {
-  const purchasedProducts = getPurchasedData();
-  return { purchasedProducts };
-}
+import { usePurchased } from "../contexts/PurchasedContext";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -37,15 +33,15 @@ export async function action({ request }) {
 }
 
 export default function CartPage() {
-  const { purchasedProducts } = useLoaderData();
-  const totalPrice = purchasedProducts
+  const { cartItems } = usePurchased();
+  const totalPrice = cartItems
     .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
     .toFixed(2);
   return (
     <main className={styles.cartContainer}>
       <section className={styles.cartItemsContainer}>
-        {purchasedProducts.length > 0 ? (
-          purchasedProducts.map((product) => {
+        {cartItems.length > 0 ? (
+          cartItems.map((product) => {
             return <PurchasedProduct product={product} styles={styles} />;
           })
         ) : (
@@ -56,7 +52,7 @@ export default function CartPage() {
             </h1>
           </div>
         )}
-        {purchasedProducts.length > 0 && (
+        {cartItems.length > 0 && (
           <h1 className={styles.totalHeading}>Total: {totalPrice}</h1>
         )}
       </section>

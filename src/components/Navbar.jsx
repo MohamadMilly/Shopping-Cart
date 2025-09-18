@@ -1,17 +1,14 @@
 import { NavLink, useLoaderData } from "react-router";
 import styles from "../styles/navbar.module.css";
 import { House, Store, ShoppingCart, Menu, X } from "lucide-react";
-import { getPurchasedData } from "../data";
-import { useState } from "react";
 
-export function loader() {
-  const purchasedProducts = getPurchasedData();
-  const purchasedCount = purchasedProducts.length;
-  return { purchasedCount };
-}
+import { useState } from "react";
+import { usePurchased } from "../contexts/PurchasedContext";
+
 export function Navbar() {
-  const { purchasedCount } = useLoaderData();
   const [navIsShown, setNavIsShown] = useState(false);
+  const { cartItems } = usePurchased();
+  const purchasedCount = cartItems.length;
   return (
     <>
       <nav className={styles.navigationBar}>
