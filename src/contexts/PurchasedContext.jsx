@@ -5,9 +5,9 @@ const PurchasedContext = createContext([]);
 function PurchaseProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   return (
-    <PurchasedContext.Provider value={{ cartItems, setCartItems }}>
+    <PurchasedContext value={{ cartItems, setCartItems }}>
       {children}
-    </PurchasedContext.Provider>
+    </PurchasedContext>
   );
 }
 

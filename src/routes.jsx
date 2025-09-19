@@ -1,7 +1,7 @@
 import App from "./App";
 import HomePage from "./routes/Homepage";
 import ShopPage from "./routes/ShopPage";
-import CartPage, { action as unpurchaseAction } from "./routes/CartPage";
+import CartPage from "./routes/CartPage";
 import { Navigate } from "react-router";
 import { PurchasePage } from "./routes/PurchasePage";
 
@@ -30,8 +30,6 @@ const routes = [
           {
             path: "cart",
             element: <CartPage />,
-
-            action: unpurchaseAction,
           },
           {
             path: "product/:id",
