@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from "react";
-
+import { createContext, useContext, useReducer } from "react";
+import purchasedReducer from "../reducers/purchasedReducer.jsx";
 const PurchasedContext = createContext([]);
 
 function PurchaseProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, dispatchCartItems] = useReducer(purchasedReducer, []);
   return (
-    <PurchasedContext value={{ cartItems, setCartItems }}>
+    <PurchasedContext value={{ cartItems, dispatchCartItems }}>
       {children}
     </PurchasedContext>
   );

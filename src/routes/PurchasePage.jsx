@@ -9,10 +9,10 @@ export function PurchasePage() {
   const [amount, setAmount] = useState(1);
   const { data: products, isPending } = useProducts();
   const navigate = useNavigate();
-  const { setCartItems, cartItems } = usePurchased();
+  const { dispatchCartItems } = usePurchased();
   if (isPending) return <p>Loading...</p>;
   const handleAddCartItem = (product, amount) => {
-    setCartItems([...cartItems, { ...product, amount }]);
+    dispatchCartItems({ type: "add_item", product, amount });
   };
   const product = products.find((product) => product.id == id);
 

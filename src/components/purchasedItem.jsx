@@ -1,33 +1,18 @@
 import { usePurchased } from "../contexts/PurchasedContext";
 
 export function PurchasedProduct({ product, styles }) {
-  const { setCartItems, cartItems } = usePurchased();
+  const { dispatchCartItems } = usePurchased();
   const handleAmountIncremeant = () => {
-    const updatedItems = cartItems.map((cartItem) => {
-      if (cartItem.id === product.id) {
-        return { ...product, amount: product.amount + 1 };
-      } else {
-        return cartItem;
-      }
-    });
-    setCartItems(updatedItems);
+    dispatchCartItems({ type: "incremeant_purchased_by_one", id: product.id });
   };
   const handleAmountDecremeant = () => {
-    const updatedItems = cartItems.map((cartItem) => {
-      if (cartItem.id === product.id) {
-        return { ...product, amount: product.amount - 1 };
-      } else {
-        return cartItem;
-      }
-    });
-    setCartItems(updatedItems);
+    if (product.amount <= 1) return;
+    dispatchCartItems({ type: "decremeant_purchased_by_one", id: product.id });
   };
   const handleUnpurchase = (id) => {
-    const index = cartItems.find((cartItem) => cartItem.id === id);
-    const updatedItems = [...cartItems];
-    updatedItems.splice(index, 1);
-    setCartItems(updatedItems);
+    dispatchCartItems({ type: "unpurchase_item", id });
   };
+
   return (
     <div key={product.id} className={styles.cartItem}>
       <div className={styles.cartItemImageContainer}>
@@ -54,6 +39,7 @@ export function PurchasedProduct({ product, styles }) {
               className={styles.amountInput}
               value={product.amount}
               readOnly
+              min={1}
             />
 
             <button

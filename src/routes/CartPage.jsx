@@ -14,7 +14,13 @@ export default function CartPage() {
       <section className={styles.cartItemsContainer}>
         {cartItems.length > 0 ? (
           cartItems.map((product) => {
-            return <PurchasedProduct product={product} styles={styles} />;
+            return (
+              <PurchasedProduct
+                product={product}
+                styles={styles}
+                key={product.id}
+              />
+            );
           })
         ) : (
           <div className={styles.emptyCardHintContainer}>
