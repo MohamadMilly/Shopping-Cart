@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import Product from "../components/productItem";
 import { searchForProducts } from "../data";
 import { Search } from "lucide-react";
+import { Bouncy } from "ldrs/react";
+
 export default function ShopPage() {
   const { data: products, isPending: isLoading, error } = useProducts();
   const [query, setQuery] = useState("");
@@ -12,8 +14,13 @@ export default function ShopPage() {
     [query, products]
   );
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error.message}</p>;
+  if (isLoading)
+    return (
+      <div className={styles.loadingIndicator}>
+        <Bouncy size="45" speed="1.75" color="black" />
+      </div>
+    );
+  if (error) return new Error(error.message);
 
   return (
     <main className={styles.shopPageContainer}>

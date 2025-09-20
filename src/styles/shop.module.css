@@ -41,6 +41,13 @@
 .searchInput:focus {
   outline: 2px solid #3b82f6;
 }
+.loadingIndicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 700px) {
   .shopHeaderContent {
