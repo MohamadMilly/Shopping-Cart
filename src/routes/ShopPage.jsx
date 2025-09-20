@@ -5,7 +5,7 @@ import Product from "../components/productItem";
 import { searchForProducts } from "../data";
 import { Search } from "lucide-react";
 import { Bouncy } from "ldrs/react";
-
+import { FourSquare } from "react-loading-indicators";
 export default function ShopPage() {
   const { data: products, isPending: isLoading, error } = useProducts();
   const [query, setQuery] = useState("");
@@ -17,7 +17,7 @@ export default function ShopPage() {
   if (isLoading)
     return (
       <div className={styles.loadingIndicator}>
-        <Bouncy size="45" speed="1.75" color="black" />
+        <FourSquare color="#000000" size="medium" text="" textColor="" />
       </div>
     );
   if (error) return new Error(error.message);

@@ -33,8 +33,11 @@ export default function purchasedReducer(state, action) {
         }
       });
     }
-    case "unpurchased-item": {
+    case "unpurchase_item": {
       return state.filter((item) => item.id !== action.id);
+    }
+    default: {
+      throw new Error("Unknown Action");
     }
   }
 }
