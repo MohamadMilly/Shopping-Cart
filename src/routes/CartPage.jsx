@@ -6,7 +6,9 @@ import { useMemo } from "react";
 export default function CartPage() {
   const { cartItems } = usePurchased();
   const totalPrice = useMemo(() => {
-    cartItems.reduce((acc, cur) => acc + cur.price * cur.amount, 0).toFixed(2);
+    return cartItems
+      .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
+      .toFixed(2);
   }, [cartItems]);
 
   return (
