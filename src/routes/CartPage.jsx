@@ -2,12 +2,12 @@ import styles from "../styles/cart.module.css";
 import { ShoppingBasket } from "lucide-react";
 import { PurchasedProduct } from "../components/purchasedItem";
 import { usePurchased } from "../contexts/PurchasedContext";
-
+import { useMemo } from "react";
 export default function CartPage() {
   const { cartItems } = usePurchased();
-  const totalPrice = cartItems
-    .reduce((acc, cur) => acc + cur.price * cur.amount, 0)
-    .toFixed(2);
+  const totalPrice = useMemo(() => {
+    cartItems.reduce((acc, cur) => acc + cur.price * cur.amount, 0).toFixed(2);
+  }, [cartItems]);
 
   return (
     <main className={styles.cartContainer}>
