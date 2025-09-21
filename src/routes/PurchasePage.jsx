@@ -3,14 +3,19 @@ import { useProducts } from "../contexts/ProductsContext";
 import { useState } from "react";
 import styles from "../styles/purchase.module.css";
 import { usePurchased } from "../contexts/PurchasedContext";
-
+import { FourSquare } from "react-loading-indicators";
 export function PurchasePage() {
   const { id } = useParams();
   const [amount, setAmount] = useState(1);
   const { data: products, isPending } = useProducts();
   const navigate = useNavigate();
   const { dispatchCartItems } = usePurchased();
-  if (isPending) return <p>Loading...</p>;
+  if (isPending)
+    return (
+      <div className={styles.loadingIndicator}>
+        <FourSquare color="#000000" size="medium" text="" textColor="" />
+      </div>
+    );
   const handleAddCartItem = (product, amount) => {
     dispatchCartItems({ type: "add_item", product, amount });
   };
